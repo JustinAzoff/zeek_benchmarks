@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+for x in *.bro;do echo -ne $x; /usr/bin/time -l  bro -b $x 2>&1 |grep max;done | column -t 
