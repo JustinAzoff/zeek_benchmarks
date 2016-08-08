@@ -21,6 +21,7 @@ function addp(x: count)
 
     ports = table();
     ports[22/tcp] = set(1.2.3.4, 5.6.7.8);
+    ports[2222/tcp] = set(1.2.3.4, 5.6.7.8);
 
     si = Scan_Info($dark_hosts=dark_hosts, $hosts=hosts, $ports=ports);
     tab[x] = si;

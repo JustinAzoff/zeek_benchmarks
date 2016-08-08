@@ -27,6 +27,10 @@ function addp(x: count)
     hll_cardinality_add(ports[22/tcp], 1.2.3.4);
     hll_cardinality_add(ports[22/tcp], 5.6.7.8);
 
+    ports[2222/tcp] = hll_cardinality_init(0.1, 0.99);
+    hll_cardinality_add(ports[2222/tcp], 1.2.3.4);
+    hll_cardinality_add(ports[2222/tcp], 5.6.7.8);
+
     si = Scan_Info($dark_hosts=dark_hosts, $hosts=hosts, $ports=ports);
     tab[x] = si;
 }
