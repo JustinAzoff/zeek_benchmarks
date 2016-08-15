@@ -1,4 +1,3 @@
-##! Attempting to detect local servers hosting redirection spam
 @load base/protocols/http
 @load ./logflood
 
@@ -11,18 +10,17 @@ export {
     };
 }
 
-function super_awesome_only(rec: HTTP::Info) : bool
+event HTTP::log_http(rec: HTTP::Info)
 {
     when (local hostname = lookup_addr(127.0.0.1)) {
+        if (SUPER_AWESOME_TAG_FTW in rec$tags) {
+        }
     }
-    return (SUPER_AWESOME_TAG_FTW in rec$tags);
 }
 
 redef exit_only_after_terminate = T;
 event bro_init()
 {
-    Log::remove_default_filter(HTTP::LOG);
-    local filter: Log::Filter = [$name="super_awesome", $path="super_awesome", $pred=super_awesome_only];
-    Log::add_filter(HTTP::LOG, filter);
     logflood();
 }
+
