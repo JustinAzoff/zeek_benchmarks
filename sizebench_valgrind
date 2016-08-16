@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+for x in *.bro;do echo -ne $x " ";
+    valgrind --tool=massif --pages-as-heap=yes --massif-out-file=massif.out bro -b $x;
+    grep mem_heap_B massif.out | sed -e 's/mem_heap_B=\(.*\)/\1/' | sort -g | tail -n 1
+done | column -t
