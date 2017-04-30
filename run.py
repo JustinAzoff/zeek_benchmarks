@@ -3,6 +3,7 @@
 import argparse
 import os
 import subprocess
+import sys
 import time
 
 from jinja2 import Environment, FileSystemLoader
@@ -47,6 +48,9 @@ def run_for_at_least(script_filename, seconds, number=1):
             N *= (seconds/dur)
             N = int(N)
         dur = run_once(script_filename, N, number)
+        if sys.stdout.isatty():
+            print(N, "took", dur, "iterations/sec", N/seconds, end="\r")
+
     return N, dur
     
 def run(script_filename, seconds, number=1):
