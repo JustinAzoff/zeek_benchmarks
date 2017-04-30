@@ -61,7 +61,7 @@ def run(script_filename, seconds, iterations=0, number=1):
     else:
         N = iterations
     for _ in range(3):
-        seconds = run_once(script_filename, N, number)
+        dur = run_once(script_filename, N, number)
         print("{:10} took {:5.2f}  {:15} it/sec".format(N, dur, int(N/dur)))
 
 def main():
