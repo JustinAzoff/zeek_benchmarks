@@ -49,16 +49,16 @@ def run_for_at_least(script_filename, seconds, number=1):
             N = int(N)
         dur = run_once(script_filename, N, number)
         if sys.stdout.isatty():
-            print(N, "took", dur, "iterations/sec", N/seconds, end="\r")
+            print("{:10} took {:5.2f}  {:15} it/sec".format(N, dur, int(N/dur)), end='\r')
 
     return N, dur
     
 def run(script_filename, seconds, number=1):
-    iterations, seconds = run_for_at_least(script_filename, seconds, number)
-    print(iterations, "took", seconds, "iterations/sec", iterations/seconds)
+    N, dur = run_for_at_least(script_filename, seconds, number)
+    print("{:10} took {:5.2f}  {:15} it/sec".format(N, dur, int(N/dur)))
     for _ in range(3):
-        seconds = run_once(script_filename, iterations, number)
-        print(iterations, "took", seconds, "iterations/sec", iterations/seconds)
+        seconds = run_once(script_filename, N, number)
+        print("{:10} took {:5.2f}  {:15} it/sec".format(N, dur, int(N/dur)))
 
 def main():
     parser = argparse.ArgumentParser(description='BroBench')
