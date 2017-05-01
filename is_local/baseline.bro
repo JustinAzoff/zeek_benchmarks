@@ -14,7 +14,7 @@ function check(ip: addr): bool
 
 local x = 0;
 local ip = 1.2.3.4;
-while ( x < 10000000 ) {
+while ( x < {{ N }}  ) {
     if(check(ip))
         ++x;
 }
