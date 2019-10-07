@@ -14,6 +14,8 @@ env = Environment(
 
 TEMP_FILENAME = "___bench.bro"
 
+BRO = os.getenv("BRO", "bro")
+
 def get_duration(cmd):
     s = time.time()
     out = subprocess.check_output(cmd)
@@ -28,7 +30,7 @@ def run_once(script_filename, iteration_count, number):
         #print(template.render(N=iteration_count, number=number))
         f.write("\n")
 
-    cmd = ["bro", TEMP_FILENAME]
+    cmd = [BRO, TEMP_FILENAME]
     dur = get_duration(cmd)
     os.unlink(TEMP_FILENAME)
     return dur
@@ -60,7 +62,7 @@ def run(script_filename, seconds, iterations=0, number=1):
         print("{:10} took {:5.2f}  {:15} it/sec".format(N, dur, int(N/dur)))
     else:
         N = iterations
-    for _ in range(3):
+    for _ in range(5):
         dur = run_once(script_filename, N, number)
         print("{:10} took {:5.2f}  {:15} it/sec".format(N, dur, int(N/dur)))
 
