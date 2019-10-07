@@ -9,7 +9,7 @@ function foo()
     local tmp = Info($a=1,$b=2,$c=3);
 }
 
-event bro_init() {
+event zeek_init() {
     local x = 0;
     while ( ++x < {{ N }} ) {
         foo();

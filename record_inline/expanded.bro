@@ -11,7 +11,7 @@ function foo()
     tmp$c=3;
 }
 
-event bro_init() {
+event zeek_init() {
     local x = 0;
     while ( ++x < {{ N }} ) {
         foo();
