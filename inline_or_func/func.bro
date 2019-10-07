@@ -6,7 +6,7 @@ function check_port(p: port): bool
 local p22 = 22/tcp;
 local p3389 = 3389/tcp;
 local x = 0;
-while ( x < 2000000 ) {
+while ( x < {{ N }} ) {
     if (check_port(p22))
         ++x;
 
