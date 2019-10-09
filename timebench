@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-for x in *;do echo -ne $x " "; /usr/bin/time bro -b $x 2>&1 ;done | column -t
