@@ -12,9 +12,9 @@ env = Environment(
     loader=FileSystemLoader(".")
 )
 
-TEMP_FILENAME = "___bench.bro"
+TEMP_FILENAME = "___bench.zeek"
 
-BRO = os.getenv("BRO", "bro")
+ZEEK = os.getenv("ZEEK", "zeek")
 
 def get_duration(cmd):
     s = time.time()
@@ -30,7 +30,7 @@ def run_once(script_filename, iteration_count, number):
         #print(template.render(N=iteration_count, number=number))
         f.write("\n")
 
-    cmd = [BRO, TEMP_FILENAME]
+    cmd = [ZEEK, TEMP_FILENAME]
     dur = get_duration(cmd)
     os.unlink(TEMP_FILENAME)
     return dur
@@ -67,8 +67,8 @@ def run(script_filename, seconds, iterations=0, number=1, runs=3):
         print("{:10} took {:5.2f}  {:15} it/sec".format(N, dur, int(N/dur)))
 
 def main():
-    parser = argparse.ArgumentParser(description='BroBench')
-    parser.add_argument('script', metavar='script.bro', type=str, help='script to run')
+    parser = argparse.ArgumentParser(description='ZeekBench')
+    parser.add_argument('script', metavar='script.zeek', type=str, help='script to run')
     parser.add_argument('--seconds', dest='seconds', type=int, default=5, help='Run for this many seconds')
     parser.add_argument('--iterations', dest='iterations', type=int, default=0, help='Run for this many iterations')
     parser.add_argument('--number', dest='number', type=int, default=1, help='arbitrary number for use in templates')
